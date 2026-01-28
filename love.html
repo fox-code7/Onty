@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONTYY MY LOVE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            color: #5a3d5c;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #ff6b8b, #ffa8c2, #ff6b8b);
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #ff6b8b;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7a5c7c;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .heart-icon {
+            color: #ff6b8b;
+            margin: 0 10px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .photo-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .photo-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-card:hover .photo-img {
+            transform: scale(1.05);
+        }
+
+        .photo-caption {
+            padding: 20px;
+            text-align: center;
+            font-weight: 600;
+            color: #5a3d5c;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .message-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .message-content {
+            background: linear-gradient(135deg, #fff5f7, #ffe8ec);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            color: #ff6b8b;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #ff3d6d;
+        }
+
+        .message-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: #ff6b8b;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .message-subtext {
+            font-size: 1.1rem;
+            color: #7a5c7c;
+            font-style: italic;
+            margin-top: 20px;
+        }
+
+        .heart-decoration {
+            font-size: 2rem;
+            color: #ff6b8b;
+            margin: 0 5px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 25px;
+            color: #5a3d5c;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .instructions {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #7a5c7c;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .instructions i {
+            color: #ff6b8b;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .message-text {
+                font-size: 1.8rem;
+            }
+            
+            .message-content {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .message-text {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ontyyy atuu tercintaa <i class="fas fa-heart heart-icon"></i></h1>
+            <p class="subtitle">Setiap foto yang kamu kirim adalah penyemangat hidupku</p>
+        </header>
+
+        <div class="instructions">
+            <i class="fas fa-mouse-pointer"></i> Klik foto-foto di bawah ini 
+        </div>
+
+        <div class="gallery-container" id="gallery">
+            <!-- Foto-foto akan ditambahkan via JavaScript -->
+        </div>
+
+        <div class="message-modal" id="messageModal">
+            <div class="message-content">
+                <span class="close-btn" id="closeModal">&times;</span>
+                <div class="message-text" id="messageText">
+                    <!-- Pesan akan dimuat di sini -->
+                </div>
+                <div class="message-subtext" id="messageSubtext">
+                    <!-- Subpesan akan dimuat di sini -->
+                </div>
+                <div style="margin-top: 30px;">
+                    <i class="fas fa-heart heart-decoration"></i>
+                    <i class="fas fa-heart heart-decoration"></i>
+                    <i class="fas fa-heart heart-decoration"></i>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Dibuat dengan <i class="fas fa-heart" style="color: #ff6b8b;"></i> untuk seseorang yang sangat spesial</p>
+            <p style="margin-top: 10px;">Setiap hari bersamamu adalah halaman baru dalam buku cerita cinta kita</p>
+        </footer>
+    </div>
+
+    <script>
+        // Data foto dan pesan romantis
+        const photoData = [
+            {
+                id: 1,
+                imageUrl: "image.jpg",
+                caption: "I LOVE YOU",
+                message: "Di mataku, kamu adalah karya seni paling indah yang pernah Tuhan ciptakan.",
+                submessage: "Setiap senyummu adalah mahkota untuk hariku."
+            },
+            {
+                id: 2,
+                imageUrl: "image2.jpg",
+                caption: "Senyum Manismu",
+                message: "Jika cinta adalah bahasa, maka kamu adalah puisi terindah yang tak akan pernah selesai kubaca.",
+                submessage: "Kamu membuatku percaya pada keajaiban."
+            },
+            {
+                id: 3,
+                imageUrl: "image3.jpg",
+                caption: "I ALLWAYS LOVE YOU",
+                message: "Aku tidak butuh dunia, asalkan kamu ada di sampingku.",
+                submessage: "Cintamu adalah rumah bagi jiwaku."
+            },
+            {
+                id: 4,
+                imageUrl: "image4.jpg",
+                caption: "rumah ternyaman",
+                message: "Kamu adalah alasan mengapa matahari terasa lebih cerah dan bintang-bintang lebih berkilau.",
+                submessage: "Setiap detik bersamamu adalah anugerah."
+            },
+            {
+                id: 5,
+                imageUrl: "image5.jpg",
+                caption: "Pewarna hidupku",
+                message: "Jika aku bisa memilih satu tempat di dunia ini untuk selamanya, aku akan memilih sisi kamu.",
+                submessage: "Kamu adalah jawaban dari semua doaku."
+            },
+            {
+                id: 6,
+                imageUrl: "image6.jpg",
+                caption: "Bunga di Hatiku",
+                message: "Cintamu adalah musik yang membuat hatiku menari, bahkan di hari-hari yang sunyi.",
+                submessage: "Kamu membuat setiap hari terasa seperti petualangan baru."
+            }
+        ];
+
+        // Fungsi untuk membuat galeri foto
+        function createGallery() {
+            const gallery = document.getElementById('gallery');
+            
+            photoData.forEach(photo => {
+                const photoCard = document.createElement('div');
+                photoCard.className = 'photo-card';
+                photoCard.setAttribute('data-id', photo.id);
+                
+                photoCard.innerHTML = `
+                    <img src="${photo.imageUrl}" alt="${photo.caption}" class="photo-img">
+                    <div class="photo-caption">
+                        <i class="fas fa-heart" style="color: #ff6b8b; margin-right: 8px;"></i>${photo.caption}
+                    </div>
+                `;
+                
+                // Tambahkan event listener untuk menampilkan pesan saat foto diklik
+                photoCard.addEventListener('click', () => showMessage(photo.id));
+                
+                gallery.appendChild(photoCard);
+            });
+        }
+
+        // Fungsi untuk menampilkan pesan
+        function showMessage(id) {
+            const photo = photoData.find(p => p.id === id);
+            if (!photo) return;
+            
+            const modal = document.getElementById('messageModal');
+            const messageText = document.getElementById('messageText');
+            const messageSubtext = document.getElementById('messageSubtext');
+            
+            messageText.textContent = photo.message;
+            messageSubtext.textContent = photo.submessage;
+            
+            modal.style.display = 'flex';
+        }
+
+        // Fungsi untuk menutup modal
+        function closeModal() {
+            const modal = document.getElementById('messageModal');
+            modal.style.display = 'none';
+        }
+
+        // Inisialisasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            createGallery();
+            
+            // Event listener untuk tombol tutup modal
+            document.getElementById('closeModal').addEventListener('click', closeModal);
+            
+            // Tutup modal saat klik di luar konten modal
+            document.getElementById('messageModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+            
+            // Tutup modal dengan tombol ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+            
+            // Tambahkan sedikit efek acak pada pesan untuk pengalaman yang lebih personal
+            const messageTexts = document.querySelectorAll('.message-text');
+            messageTexts.forEach(text => {
+                // Tambahkan efek kecil pada pesan
+                text.style.animationDelay = `${Math.random() * 0.5}s`;
+            });
+        });
+
+        // Petunjuk untuk mengganti foto dengan foto asli
+        console.log("Untuk mengganti foto dengan foto girlfriend Anda:");
+        console.log("1. Ganti URL gambar di array photoData dengan URL foto Anda");
+        console.log("2. Anda bisa upload foto ke layanan seperti Imgur atau Google Drive");
+        console.log("3. Atau letakkan foto di folder yang sama dengan file HTML ini dan gunakan nama file");
+        console.log("4. Jangan lupa ubah juga caption dan pesan sesuai keinginan Anda");
+    </script>
+</body>
+</html>
